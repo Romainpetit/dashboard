@@ -17,6 +17,7 @@ const Counter = ({value, label, color, previousValue, details}) => {
             <Info size={12} data-tip={details} data-for='overridePosition' />
             <ReactTooltip
               id='overridePosition'
+              backgroundColor='rgba(0, 0, 0, .3)'
               overridePosition={(
                 {left, top}, currentEvent, currentTarget, node) => {
                 const d = document.documentElement
