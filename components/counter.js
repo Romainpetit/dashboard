@@ -17,6 +17,7 @@ const Counter = ({value, label, color, previousValue, details}) => {
             <Info size={12} data-tip={details} data-for='overridePosition' />
             <ReactTooltip
               id='overridePosition'
+              className='extra-class'
               backgroundColor='rgba(0, 0, 0, .3)'
               arrowColor='rgba(0, 0, 0, 0)'
               multiline
