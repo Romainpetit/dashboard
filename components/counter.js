@@ -32,6 +32,28 @@ const Counter = ({value, label, color, previousValue, details}) => {
       </div>
 
       <style jsx>{`
+        .hover {
+          display: flex;
+          flex-direction: column;
+        }
+
+        span {
+          visibility: hidden;
+          font-size: .5em;
+          font-weight: lighter;
+          background-color: #000000aa;
+          color: ${colors.white};
+          position: absolute;
+          margin: 1em;
+          padding: 0em .8em;
+          border-radius: 5px;
+        }
+
+        .hover:hover span {
+          visibility: visible;
+          color: white;
+        }
+
         .counter {
           display: flex;
           flex-direction: column;
@@ -56,6 +78,10 @@ const Counter = ({value, label, color, previousValue, details}) => {
         .value {
           font-size: xx-large;
           font-weight: bold;
+          margin-right: -12px;
+          display: flex;
+          justify-content: center;
+          flex-direction: row;
         }
         `}</style>
     </div>
