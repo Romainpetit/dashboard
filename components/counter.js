@@ -18,6 +18,8 @@ const Counter = ({value, label, color, previousValue, details}) => {
             <ReactTooltip
               id='overridePosition'
               backgroundColor='rgba(0, 0, 0, .3)'
+              arrowColor='rgba(0, 0, 0, 0)'
+              multiline
               overridePosition={(
                 {left, top}, currentEvent, currentTarget, node) => {
                 const d = document.documentElement
