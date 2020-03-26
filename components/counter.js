@@ -15,6 +15,17 @@ const Counter = ({value, label, color, previousValue, details}) => {
           {typeof value === 'number' ? value : '?'}
           <div className='hover'>
             <Info size={12} data-tip={details} data-for='overridePosition' />
+            <ReactTooltip
+              id='overridePosition'
+              overridePosition={(
+                {left, top}, currentEvent, currentTarget, node) => {
+                const d = document.documentElement
+                left = Math.min(d.clientWidth - node.clientWidth, left)
+                top = Math.min(d.clientHeight - node.clientHeight, top)
+                left = Math.max(0, left)
+                top = Math.max(0, top)
+                return {top, left}
+              }} />
           </div>
         </div>
         {difference && (
@@ -24,17 +35,6 @@ const Counter = ({value, label, color, previousValue, details}) => {
         )}
         <div>{label}</div>
       </div>
-      <ReactTooltip
-        id='overridePosition'
-        overridePosition={(
-          {left, top}, currentEvent, currentTarget, node) => {
-          const d = document.documentElement
-          left = Math.min(d.clientWidth - node.clientWidth, left)
-          top = Math.min(d.clientHeight - node.clientHeight, top)
-          left = Math.max(0, left)
-          top = Math.max(0, top)
-          return {top, left}
-        }} />
 
       <style jsx>{`
         .hover {
