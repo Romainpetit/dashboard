@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import {Info} from 'react-feather'
+import ReactTooltip from 'react-tooltip'
 import colors from '../styles/colors'
 
 const Counter = ({value, label, color, previousValue, details}) => {
@@ -13,14 +14,7 @@ const Counter = ({value, label, color, previousValue, details}) => {
         <div className='value'>
           {typeof value === 'number' ? value : '?'}
           <div className='hover'>
-            <Info size={12} style={{position: 'inherit'}} />
-            {details && (
-              <span>
-                <p>
-                  {details}
-                </p>
-              </span>
-            )}
+            <Info size={12} data-tip={details} data-for='overridePosition' />
           </div>
         </div>
         {difference && (
@@ -30,28 +24,23 @@ const Counter = ({value, label, color, previousValue, details}) => {
         )}
         <div>{label}</div>
       </div>
+      <ReactTooltip
+        id='overridePosition'
+        overridePosition={(
+          {left, top}, currentEvent, currentTarget, node) => {
+          const d = document.documentElement
+          left = Math.min(d.clientWidth - node.clientWidth, left)
+          top = Math.min(d.clientHeight - node.clientHeight, top)
+          left = Math.max(0, left)
+          top = Math.max(0, top)
+          return {top, left}
+        }} />
 
       <style jsx>{`
         .hover {
           display: flex;
           flex-direction: column;
-        }
-
-        span {
-          visibility: hidden;
-          font-size: .5em;
           font-weight: lighter;
-          background-color: #000000aa;
-          color: ${colors.white};
-          position: absolute;
-          margin: 1em;
-          padding: 0em .8em;
-          border-radius: 5px;
-        }
-
-        .hover:hover span {
-          visibility: visible;
-          color: white;
         }
 
         .counter {
